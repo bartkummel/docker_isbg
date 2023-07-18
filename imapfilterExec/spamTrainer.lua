@@ -42,11 +42,11 @@ for i, confFile in ipairs( conftab ) do
 		end
 		if ( confLoader.tableHasKey( config, "spamLifetime" ) ) then
 			local spamMessages = imapObj[config.folders.spam]:is_older( config.spamLifetime )
-			if( confLoader.tableHasKey( config, "isGmail" ) and config.isGmail ) then
-			    imapObj[config.folders.inbox]:move_messages( imapObj["[Gmail]/Trash"], spamMessages )
-			else
-                spamMessages:delete_messages( )
-			end
+			--if( confLoader.tableHasKey( config, "isGmail" ) and config.isGmail ) then
+			--    imapObj[config.folders.inbox]:move_messages( imapObj["[Gmail]/Trash"], spamMessages )
+			--else
+                	spamMessages:delete_messages( )
+			--end
 			print( #spamMessages.. " spams deletetd" )
 		end
 	end
