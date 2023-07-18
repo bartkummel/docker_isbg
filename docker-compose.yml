@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  docker_isbg:
+    dockerfile: ./Dockerfile 
+    volumes: 
+      - /volume1/docker/isbg/spamassasin/:/var/lib/spamassassin/
+      - /volume1/docker/isbg/mailaccounts:/var/lib/mailaccounts
+    restart: unless-stopped
+    environment:
+      CRON_HOUR: 1                       # hour for daily spam learning
+      CRON_MINUTE: 30                    # minute for daily spam learning
+      TZ: Europe/Amsterdam               # time zone
+      USERNAME:	debian-spamd             # username to run spammassin-deamon
+      HAM_BATCH_SIZE: 50                 # max amount of ham messages to learn per learning run
+      SPAM_BATCH_SIZE: 50                # max amount of spam messages to learn per learning run
+      FILTER_BATCH_SIZE: 50              # max amount of messages to filter per run
+      MAX_MAIL_SIZE: 120000              # mails bigger than this size will be skipped by SA. (BYTES)
+      EXTRA_OPTIONS: --nouser-config     # additional options for spamasssassin
+      PYZOR_SITE: public.pyzor.org:24441 # pyzor URI
+      DETAILED_LOGGING:	false            # enables verbose logging of isbg/SA
+      LIST_FOLDERS: true                 # Print list of mailboxes and folders on startup. Settings this to "only" will terminate the container after listing.
+
