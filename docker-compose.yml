@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   docker_isbg:
+    build: ./
     volumes: 
       - /volume1/docker/isbg/spamassasin/:/var/lib/spamassassin/
       - /volume1/docker/isbg/mailaccounts:/var/lib/mailaccounts
